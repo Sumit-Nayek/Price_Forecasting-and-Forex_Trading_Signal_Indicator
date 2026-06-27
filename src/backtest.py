@@ -30,10 +30,9 @@ class ForexVectorBacktester:
         # System position returns calculation
         df['Strategy_Returns'] = df['Position'].shift(1) * df['Market_Returns']
         
-        # Convert pip cost from the platform schema (Convert dynamic spreads to returns penalty)
-        # Assuming typical pip denominator scaling metric (0.0001)
+        # FIXED TYPO HERE: Changed pips_unit to pip_unit
         pip_unit = 0.0001
-        df['Spread_Cost'] = (df['Trades'].abs() * (df['Spread'] * pips_unit)) / df['Close']
+        df['Spread_Cost'] = (df['Trades'].abs() * (df['Spread'] * pip_unit)) / df['Close']
         
         # Net strategy performance after accounting for trading friction
         df['Net_Returns'] = df['Strategy_Returns'] - df['Spread_Cost'].fillna(0)

@@ -12,21 +12,25 @@ def engineer_ml_features(df):
     Transforms basic technical indicator matrices into a high-dimensional 
     feature array tailored for machine learning prediction.
     """
-    # Baseline composite and indicator engineering
+    # 1. Calculate the missing log returns vector before indicators consume it
+    df = df.copy().sort_values('Date').reset_index(drop=True)
+    df['Returns'] = np.log(df['Close'] / df['Close'].shift(1))
+    
+    # 2. Apply baseline composite and indicator engineering modules
     df = generate_composite_signals(df).copy()
     
-    # 1. Momentum & Return Lags
+    # 3. Momentum & Return Lags
     for lag in [1, 3, 5, 10]:
         df[f'Return_Lag_{lag}'] = df['Close'].pct_change(lag)
         df[f'Vol_Lag_{lag}'] = df['Returns'].rolling(window=lag+2).std()
     
-    # 2. Structural Interaction Boundaries
+    # 4. Structural Interaction Boundaries
     df['Spread_to_ATR'] = df['Spread'] / (df['ATR_14'] + 1e-10)
     df['Distance_BB_Upper'] = df['BB_Upper'] - df['Close']
     df['Distance_BB_Lower'] = df['Close'] - df['BB_Lower']
     df['MACD_Slope'] = df['MACD_Hist'].diff(2)
     
-    # 3. Define Binary Target Vector (1 if next-day price shifts up, else 0)
+    # 5. Define Binary Target Vector (1 if next-day price shifts up, else 0)
     df['Target'] = (df['Close'].shift(-1) > df['Close']).astype(int)
     
     return df.dropna()

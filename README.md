@@ -1,4 +1,4 @@
-# 📈 Price Forecasting & Forex Trading Signal Indicator
+# Price Forecasting & Forex Trading Signal Indicator
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python" />

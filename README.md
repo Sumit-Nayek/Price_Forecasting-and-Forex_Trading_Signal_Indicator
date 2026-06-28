@@ -337,37 +337,20 @@ Please ensure code follows PEP 8 and includes appropriate docstrings.
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-Total PnL = SUMX(FactTrades, FactTrades[PnL])
-Win Rate = 
-VAR TotalTradesCount = COUNTROWS(FactTrades)
-VAR WinningTradesCount = CALCULATE(COUNTROWS(FactTrades), FactTrades[PnL] > 0)
-RETURN DIVIDE(WinningTradesCount, TotalTradesCount, 0)
-Sharpe Ratio = 
-VAR DailyReturnsTable = 
-    SUMMARIZE(
-        FactTrades, 
-        FactTrades[DateKey], 
-        "DailyPnLAmount", [Total PnL]
-    )
-VAR AvgDailyReturn = AVERAGEX(DailyReturnsTable, [DailyPnLAmount])
-VAR StdDailyDeviation = SQRT(AVERAGEX(DailyReturnsTable, ([DailyPnLAmount] - AvgDailyReturn)^2))
-VAR RiskFreeDailyRate = 0.05 / 252
-RETURN 
-    DIVIDE(AvgDailyReturn - RiskFreeDailyRate, StdDailyDeviation, 0) * SQRT(252)
-Maximum Drawdown = 
-VAR CurrentDateKey = MAX(FactMarketData[DateTimeKey])
-VAR CumulativePnLHistory = 
-    ADDCOLUMNS(
-        FILTER(
-            ALL(FactMarketData), 
-            FactMarketData[DateTimeKey] <= CurrentDateKey
-        ),
-        "RunningTotalPnL", CALCULATE([Total PnL], FactMarketData[DateTimeKey] <= EARLIER(FactMarketData[DateTimeKey]))
-    )
-VAR HistoricalPeakEquity = MAXX(CumulativePnLHistory, [RunningTotalPnL])
-VAR CurrentStrategyEquity = [Total PnL]
-RETURN 
-    MINX(CumulativePnLHistory, CurrentStrategyEquity - HistoricalPeakEquity)
+Total Signals = COUNTROWS(FactSignals);
+Signal Hit Rate = 
+VAR TotalExecuted = CALCULATE(COUNTROWS(FactSignals), FactSignals[Executed] = TRUE())
+VAR Profitable = CALCULATE(COUNTROWS(FactSignals), FactSignals[Executed] = TRUE(), FactSignals[Composite_Score] * CALCULATE(SUM(FactTrades[PnL])) > 0)
+RETURN DIVIDE(Profitable, TotalExecuted, 0);
+Avg Signal Confidence = AVERAGEX(FactSignals, FactSignals[Confidence])
+Profit Factor = 
+VAR GrossProfit = CALCULATE(SUM(FactTrades[PnL]), FactTrades[PnL] > 0)
+VAR GrossLoss = ABS(CALCULATE(SUM(FactTrades[PnL]), FactTrades[PnL] < 0))
+RETURN DIVIDE(GrossProfit, GrossLoss, 0);
+Strategy Alpha = 
+VAR StrategyReturn = DIVIDE([Total PnL], 100000, 0)
+VAR BenchmarkReturn = DIVIDE(CALCULATE([Total PnL], FactTrades[StrategyID] = 101), 100000, 0)
+RETURN StrategyReturn - BenchmarkReturn;
 ## 👤 Author
 
 **Sumit Nayek**

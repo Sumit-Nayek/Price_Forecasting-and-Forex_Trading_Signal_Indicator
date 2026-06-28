@@ -1,0 +1,6 @@
+PairID,PairName,BaseCurrency,QuoteCurrency,Region
+1,EUR/USD,EUR,USD,G10
+2,USD/JPY,USD,JPY,G10
+3,GBP/USD,GBP,USD,G10
+4,AUD/USD,AUD,USD,Commodity
+5,USD/INR,USD,INR,Asian EM

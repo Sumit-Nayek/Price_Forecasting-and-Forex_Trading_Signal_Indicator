@@ -10,6 +10,7 @@
 <p align="center">
   A machine learning–powered system for forex price forecasting and automated buy/sell signal generation, combining deep learning models with technical analysis indicators.
 </p>
+<img width="1408" height="768" alt="Gemini_Generated_Image_7gshg17gshg17gsh" src="https://github.com/user-attachments/assets/5eda7b6f-8669-449b-bf98-c75dbe0fe034" />
 
 ---
 

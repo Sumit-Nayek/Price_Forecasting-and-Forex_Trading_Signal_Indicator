@@ -346,7 +346,7 @@ Project Research Scientist | AI/ML Researcher
 NITTTR Kolkata
 
 - GitHub: [@Sumit-Nayek](https://github.com/Sumit-Nayek)
-- LinkedIn: [linkedin.com/in/sumit-nayek](https://linkedin.com/in/sumit-nayek) *(update link)*
+- Protfolio: [@Sumit-Nayek](https://portfolio-1-zeta-eight.vercel.app/) *(update link)*
 
 ---
 

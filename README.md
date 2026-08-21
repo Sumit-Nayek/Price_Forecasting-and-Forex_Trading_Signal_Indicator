@@ -245,27 +245,6 @@ python src/visualization/plot_signals.py --pair EURUSD
 
 ---
 
-## 📊 Results
-
-> *Note: Update this section with your actual experimental results.*
-
-| Model | Currency Pair | MAE | RMSE | Direction Accuracy |
-|---|---|---|---|---|
-| LSTM | EUR/USD | — | — | —% |
-| GRU | EUR/USD | — | — | —% |
-| Ensemble | EUR/USD | — | — | —% |
-
-**Backtest Summary (EUR/USD, H1, 2022–2024):**
-
-| Metric | Value |
-|---|---|
-| Total Trades | — |
-| Win Rate | —% |
-| Profit Factor | — |
-| Sharpe Ratio | — |
-| Max Drawdown | —% |
-
----
 
 ## 📁 Project Structure
 

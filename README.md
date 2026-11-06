@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  A machine learning–powered system for forex price forecasting and automated buy/sell signal generation, combining deep learning models with technical analysis indicators.
+  A machine learning powered system for forex price forecasting and automated buy/sell signal generation, combining deep learning models with technical analysis indicators.
 </p>
 <img width="1408" height="768" alt="Gemini_Generated_Image_7gshg17gshg17gsh" src="https://github.com/user-attachments/assets/5eda7b6f-8669-449b-bf98-c75dbe0fe034" />
 
@@ -36,7 +36,7 @@
 
 ## 🔍 Overview
 
-This project addresses the challenge of **forex price prediction** and **automated signal generation** using a hybrid approach of deep learning–based time series forecasting and classical technical analysis. The system ingests historical OHLCV (Open, High, Low, Close, Volume) data for currency pairs, trains predictive models, and overlays trading signals to assist in decision-making.
+This project addresses the challenge of **forex price prediction** and **automated signal generation** using a hybrid approach of deep learning based time series forecasting and classical technical analysis. The system ingests historical OHLCV (Open, High, Low, Close, Volume) data for currency pairs, trains predictive models, and overlays trading signals to assist in decision-making.
 
 The indicator pipeline processes raw market data and outputs:
 - **Short-term price forecasts** (next N candles)
